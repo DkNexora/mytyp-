@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A fast, modern typing speed test with live WPM, accuracy and error tracking." />
+  <title>Typing Test</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#typing-input">Skip to typing area</a>
+
+  <main class="app">
+    <header class="header">
+      <h1>⌨️ Typing Test</h1>
+      <p class="subtitle">Start typing to begin. Test your speed and accuracy.</p>
+    </header>
+
+    <!-- Duration selector -->
+    <section class="durations" aria-label="Choose test duration">
+      <button type="button" class="chip" data-duration="30" aria-pressed="false">30s</button>
+      <button type="button" class="chip active" data-duration="60" aria-pressed="true">60s</button>
+      <button type="button" class="chip" data-duration="120" aria-pressed="false">120s</button>
+    </section>
+
+    <!-- Live stats -->
+    <section class="stats" aria-label="Live statistics">
+      <div class="stat">
+        <span class="stat-label">Time</span>
+        <span class="stat-value" id="time">60</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">WPM</span>
+        <span class="stat-value" id="wpm">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Accuracy</span>
+        <span class="stat-value" id="accuracy">100%</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Errors</span>
+        <span class="stat-value" id="errors">0</span>
+      </div>
+      <div class="stat best">
+        <span class="stat-label">Best WPM</span>
+        <span class="stat-value" id="best">0</span>
+      </div>
+    </section>
+
+    <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+
+    <!-- Paragraph to type -->
+    <section class="test-area">
+      <div id="text-display" class="text-display" aria-label="Text to type" tabindex="-1"></div>
+      <label for="typing-input" class="sr-only">Type the text shown above</label>
+      <textarea
+        id="typing-input"
+        class="typing-input"
+        placeholder="Start typing here..."
+        rows="3"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+      ></textarea>
+    </section>
+
+    <!-- Controls -->
+    <section class="controls" aria-label="Test controls">
+      <button type="button" class="btn primary" id="start-btn">Start</button>
+      <button type="button" class="btn secondary" id="restart-btn">Restart</button>
+      <button type="button" class="btn danger" id="reset-btn">Reset</button>
+    </section>
+
+    <p class="hint">Tip: <kbd>Tab</kbd> then <kbd>Enter</kbd> restarts quickly. Pasting is disabled.</p>
+  </main>
+
+  <!-- Results screen -->
+  <div class="overlay hidden" id="results" role="dialog" aria-modal="true" aria-labelledby="results-title">
+    <div class="modal">
+      <h2 id="results-title">Time's up! 🎉</h2>
+      <p class="new-best hidden" id="new-best">🏆 New personal best!</p>
+      <div class="results-grid">
+        <div class="result"><span class="result-value" id="final-wpm">0</span><span class="result-label">WPM</span></div>
+        <div class="result"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result"><span class="result-value" id="final-errors">0</span><span class="result-label">Errors</span></div>
+        <div class="result"><span class="result-value" id="final-chars">0</span><span class="result-label">Characters typed</span></div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn primary" id="try-again-btn">Try Again</button>
+        <button type="button" class="btn secondary" id="close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
